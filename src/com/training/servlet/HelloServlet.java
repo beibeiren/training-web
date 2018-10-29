@@ -2,6 +2,7 @@ package com.training.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -53,8 +54,10 @@ public class HelloServlet extends HttpServlet {
 		System.out.println("url:" + url);
 		String agent = request.getHeader("User-Agent"); // 获取客户端浏览器信息
 		System.out.println("agent:" + agent);
-		// request.getRequestDispatcher("/dispatcherServlet"); // <url-pattern>得到请求转发对象
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// request.getRequestDispatcher("index.jsp"); // <url-pattern>得到请求转发对象
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		rd.forward(request, response);
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
